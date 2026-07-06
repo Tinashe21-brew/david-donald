@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>D&D Electrical | Tri-Zone Electrical — Harare, Zimbabwe</title>
+  <meta name="description" content="David and Donald Electricals (Tri-Zone Electrical) — high voltage and low voltage electrical solutions across Zimbabwe. Substations, overhead lines, wiring, control panels."/>
+  <meta name="keywords" content="electrical services, high voltage, low voltage, substation, Zimbabwe, Harare, Tri-Zone Electrical"/>
+  <meta name="geo.placename" content="Harare"/>
+  <link rel="icon" type="image/png" href="images/logo.png"/>
+  <link rel="canonical" href="https://dndelectrical.co.zw"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg:       #0D0F12;
+      --bg2:      #13161C;
+      --card:     #1A1D25;
+      --border:   #2A2D35;
+      --green:    #4CAF50;
+      --green2:   #3d9140;
+      --blue:     #2196D9;
+      --blue2:    #1a7ab8;
+      --text:     #F0F0F0;
+      --muted:    #8B8E99;
+      --white:    #FFFFFF;
+      --radius:   6px;
+      --disp:     'Barlow Condensed', sans-serif;
+      --body:     'Inter', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: var(--body); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; height: 76px;
+      background: rgba(13,15,18,0.0);
+      transition: transform 0.4s ease, background 0.3s;
+    }
+    nav.nav-scrolled {
+      background: rgba(13,15,18,0.96); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    nav.nav-hidden { transform: translateY(-100%); }
+    .nav-logo img { height: 64px; width: auto; }
+    /* Hide old nav links and cta by default */
+    .nav-links { display: none; }
+    .nav-cta { display: none; }
+    .hamburger { display: none; }
+
+    /* ── MENU TOGGLE BUTTON ── */
+    .menu-btn {
+      position: fixed; top: 1.1rem; right: 1.5rem; z-index: 400;
+      width: 48px; height: 48px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--green), var(--blue));
+      border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 16px rgba(33,150,217,0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .menu-btn:hover { transform: scale(1.08); box-shadow: 0 6px 24px rgba(33,150,217,0.5); }
+    .menu-btn .icon-bars, .menu-btn .icon-close { position: absolute; transition: opacity 0.25s, transform 0.25s; }
+    .menu-btn .icon-close { opacity: 0; transform: rotate(-90deg); }
+    .menu-btn.open .icon-bars { opacity: 0; transform: rotate(90deg); }
+    .menu-btn.open .icon-close { opacity: 1; transform: rotate(0deg); }
+
+    /* ── SLIDE-OUT MENU PANEL ── */
+    .menu-panel {
+      position: fixed; top: 0; right: 0; bottom: 0; z-index: 350;
+      width: 300px; max-width: 85vw;
+      background: rgba(13,15,18,0.98); backdrop-filter: blur(20px);
+      border-left: 1px solid var(--border);
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 5rem 2.5rem 3rem;
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+    }
+    .menu-panel.open { transform: translateX(0); }
+    .menu-panel ul { list-style: none; display: flex; flex-direction: column; gap: 0.3rem; }
+    .menu-panel ul li a {
+      display: block; font-family: var(--disp); font-size: 1.8rem;
+      font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
+      color: var(--muted); padding: 0.6rem 0;
+      border-bottom: 1px solid transparent;
+      transition: color 0.2s, border-color 0.2s, padding-left 0.2s;
+    }
+    .menu-panel ul li a:hover {
+      color: var(--white); border-color: var(--border); padding-left: 0.6rem;
+    }
+    .menu-panel-contact {
+      margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--border);
+    }
+    .menu-panel-contact a.menu-cta {
+      display: block; text-align: center;
+      background: linear-gradient(135deg, var(--green), var(--blue));
+      color: #fff; padding: 0.85rem 1.5rem; border-radius: var(--radius);
+      font-weight: 700; font-size: 0.88rem; letter-spacing: 0.06em;
+      text-transform: uppercase; transition: opacity 0.2s;
+    }
+    .menu-panel-contact a.menu-cta:hover { opacity: 0.85; }
+    .menu-panel-phone {
+      margin-top: 1rem; text-align: center;
+      font-size: 0.82rem; color: var(--muted);
+    }
+    .menu-panel-phone a { color: var(--green); }
+    /* Overlay behind panel */
+    .menu-overlay {
+      display: none; position: fixed; inset: 0; z-index: 300;
+      background: rgba(0,0,0,0.5);
+    }
+    .menu-overlay.open { display: block; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 0 5% 90px; position: relative; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+    }
+    .hero-bg-slide {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center top;
+      transition: opacity 1.5s ease-in-out;
+    }
+    .hero-bg-slide.url('images/hero-slide1.jpg')
+    }
+    .hero-bg-slide.url('images/hero-slide2.jpg')
+    }
+    .hero-overlay {
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(to top, rgba(13,15,18,0.98) 0%, rgba(13,15,18,0.75) 40%, rgba(13,15,18,0.45) 70%, rgba(13,15,18,0.25) 100%);
+    }
+    .hero-content { position: relative; z-index: 2; max-width: 900px; }
+    
+    /* Company name hero */
+    .company-name-hero {
+      font-family: var(--disp);
+      font-size: clamp(2.2rem, 8vw, 6rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      line-height: 0.95;
+      letter-spacing: 0.02em;
+      margin-bottom: 1.2rem;
+      background: linear-gradient(135deg, #ffffff 0%, #c8e6c9 50%, #90caf9 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 2px 12px rgba(33,150,217,0.3));
+    }
+    .company-name-hero span {
+      background: linear-gradient(135deg, var(--green), var(--blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .eyebrow { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--green); margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.7rem; }
+    .eyebrow::before { content: ''; display: block; width: 28px; height: 2px; background: var(--green); flex-shrink: 0; }
+    h1.hero-title { font-family: var(--disp); font-size: clamp(2.4rem, 8vw, 7rem); font-weight: 800; line-height: 0.93; text-transform: uppercase; letter-spacing: -0.01em; }
+    h1.hero-title .acc-g { color: var(--green); }
+    h1.hero-title .acc-b { color: var(--blue); }
+    .hero-sub { margin-top: 1.6rem; max-width: 580px; font-size: 1rem; color: var(--muted); line-height: 1.75; }
+    .hero-actions { margin-top: 2.2rem; display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn { display: inline-block; padding: 0.85rem 2rem; border-radius: var(--radius); font-weight: 700; font-size: 0.88rem; letter-spacing: 0.05em; text-transform: uppercase; transition: all 0.2s; cursor: pointer; border: none; }
+    .btn-g { background: linear-gradient(135deg, var(--green), var(--blue)); color: #fff; }
+    .btn-g:hover { opacity: 0.85; transform: translateY(-2px); }
+    .btn-o { border: 1px solid var(--border); color: var(--text); background: transparent; }
+    .btn-o:hover { border-color: var(--green); color: var(--green); }
+    .hero-stats { margin-top: 4rem; display: flex; gap: 3rem; flex-wrap: wrap; padding-top: 2rem; border-top: 1px solid var(--border); }
+    .stat-n { font-family: var(--disp); font-size: 2.4rem; font-weight: 800; background: linear-gradient(135deg, var(--green), var(--blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; }
+    .stat-l { font-size: 0.74rem; color: var(--muted); margin-top: 0.3rem; text-transform: uppercase; letter-spacing: 0.1em; }
+
+    /* ── DIVIDER ── */
+    .divider { height: 2px; background: linear-gradient(90deg, transparent, var(--border) 20%, var(--green) 50%, var(--border) 80%, transparent); }
+
+    /* ── SECTIONS ── */
+    section { padding: 100px 5%; }
+    .sec-eyebrow { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--green); margin-bottom: 0.9rem; display: flex; align-items: center; gap: 0.6rem; }
+    .sec-eyebrow::before { content: ''; display: block; width: 20px; height: 2px; background: var(--green); flex-shrink: 0; }
+    h2.sec-title { font-family: var(--disp); font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 800; text-transform: uppercase; line-height: 1; letter-spacing: -0.01em; margin-bottom: 1rem; }
+    .sec-sub { color: var(--muted); max-width: 560px; font-size: 0.95rem; line-height: 1.7; }
+
+    /* ── SERVICES ── */
+    #services { background: var(--bg2); }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 1px; margin-top: 3.5rem; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    .svc { background: var(--card); padding: 2.4rem 2rem; position: relative; overflow: hidden; transition: background 0.25s; }
+    .svc:hover { background: #1f2330; }
+    .svc::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--green), var(--blue)); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
+    .svc:hover::before { transform: scaleX(1); }
+    .svc-icon { width: 44px; height: 44px; margin-bottom: 1.3rem; color: var(--green); }
+    .svc-title { font-family: var(--disp); font-size: 1.25rem; font-weight: 700; text-transform: uppercase; margin-bottom: 0.7rem; }
+    .svc-text { font-size: 0.87rem; color: var(--muted); line-height: 1.65; margin-bottom: 1rem; }
+    .svc-list { display: flex; flex-direction: column; gap: 0.4rem; }
+    .svc-list li { font-size: 0.82rem; color: var(--muted); display: flex; gap: 0.6rem; align-items: flex-start; }
+    .svc-list li::before { content: '›'; color: var(--green); flex-shrink: 0; }
+    .svc-tag { display: inline-block; margin-top: 1.1rem; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green); border: 1px solid var(--green); padding: 0.22rem 0.6rem; border-radius: 2px; }
+
+    /* ── ABOUT ── */
+    #about { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+    .about-img-wrap { position: relative; }
+    .about-img-wrap img { width: 100%; height: 500px; object-fit: cover; border-radius: var(--radius); }
+    .about-badge { position: absolute; bottom: -1.5rem; right: -1.5rem; background: linear-gradient(135deg, var(--green), var(--blue)); color: #fff; padding: 1.4rem 1.8rem; border-radius: var(--radius); font-family: var(--disp); font-weight: 800; text-transform: uppercase; }
+    .about-badge .big { font-size: 2rem; line-height: 1; }
+    .about-badge .small { font-size: 0.66rem; letter-spacing: 0.1em; margin-top: 0.2rem; }
+    .about-list { margin-top: 1.8rem; display: flex; flex-direction: column; gap: 0.85rem; }
+    .about-item { display: flex; gap: 0.9rem; align-items: flex-start; font-size: 0.9rem; color: var(--muted); }
+    .about-item::before { content: '▸'; color: var(--green); flex-shrink: 0; margin-top: 0.15rem; }
+
+    /* ── WHY CHOOSE US ── */
+    #why { background: var(--bg2); }
+    .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-top: 3.5rem; }
+    .why-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem 1.6rem; transition: border-color 0.25s, transform 0.25s; }
+    .why-card:hover { border-color: var(--green); transform: translateY(-4px); }
+    .why-icon { width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, var(--green), var(--blue)); display: flex; align-items: center; justify-content: center; margin-bottom: 1.1rem; }
+    .why-icon svg { width: 20px; height: 20px; color: #fff; stroke: #fff; }
+    .why-title { font-family: var(--disp); font-size: 1.1rem; font-weight: 700; text-transform: uppercase; margin-bottom: 0.5rem; }
+    .why-text { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── PROJECTS ── */
+    #projects {
+      position: relative;
+    }
+    url('images/projects-bg.jpg')
+      opacity: 0.04;
+      pointer-events: none;
+    }
+    #projects > * { position: relative; z-index: 1; }
+    .proj-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 3.5rem; }
+    .proj-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: transform 0.25s, border-color 0.25s; }
+    .proj-card:hover { transform: translateY(-4px); border-color: var(--green); }
+    .proj-thumb { height: 220px; overflow: hidden; }
+    .proj-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+    .proj-card:hover .proj-thumb img { transform: scale(1.04); }
+    .proj-body { padding: 1.6rem; }
+    .proj-label { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--green); margin-bottom: 0.4rem; }
+    .proj-title { font-family: var(--disp); font-size: 1.2rem; font-weight: 700; text-transform: uppercase; margin-bottom: 0.6rem; }
+    .proj-text { font-size: 0.85rem; color: var(--muted); line-height: 1.65; }
+    .proj-link { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 1.1rem; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green); transition: gap 0.2s; }
+    .proj-link:hover { gap: 0.7rem; }
+
+    /* ── TEAM ── */
+    #team { background: var(--bg2); }
+    .team-layout { display: grid; grid-template-columns: 1.2fr 1fr; gap: 5rem; align-items: start; margin-top: 3.5rem; }
+    .team-photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .team-photo { border-radius: var(--radius); overflow: hidden; }
+    .team-photo img { width: 100%; height: 200px; object-fit: cover; transition: transform 0.4s; }
+    .team-photo:hover img { transform: scale(1.04); }
+    .team-photo.full { grid-column: 1 / -1; }
+    .team-photo.full img { height: 240px; }
+    .team-roles { display: flex; flex-direction: column; gap: 0.8rem; }
+    .team-role-item { display: flex; align-items: center; gap: 1rem; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.9rem 1.2rem; transition: border-color 0.2s; }
+    .team-role-item:hover { border-color: var(--green); }
+    .role-dot { width: 8px; height: 8px; border-radius: 50%; background: linear-gradient(135deg, var(--green), var(--blue)); flex-shrink: 0; }
+    .role-name { font-family: var(--disp); font-size: 0.95rem; font-weight: 700; text-transform: uppercase; flex: 1; }
+    .role-count { font-size: 0.72rem; color: var(--green); font-weight: 600; }
+
+    /* ── VISION ── */
+    #vision {
+      position: relative; overflow: hidden; text-align: center;
+      background: linear-gradient(135deg, #0a1a0a 0%, #0a1020 100%);
+    }
+    url('images/vision-bg.jpg') }
+    #vision .inner { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
+    #vision .sec-eyebrow { justify-content: center; }
+    #vision .sec-eyebrow::before { display: none; }
+    #vision h2.sec-title { font-size: clamp(2.2rem, 5vw, 3.6rem); }
+    #vision .sec-sub { margin: 0 auto; color: var(--muted); }
+    .vision-highlight { display: inline-block; background: linear-gradient(135deg, var(--green), var(--blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+    /* ── REFERENCES ── */
+    #references { background: var(--bg2); }
+    .ref-logos { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1px; margin-top: 3.5rem; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    .ref-logo { background: var(--card); padding: 1.8rem 1.2rem; display: flex; align-items: center; justify-content: center; transition: background 0.25s; }
+    .ref-logo:hover { background: #1f2330; }
+    .ref-logo img { max-height: 60px; max-width: 110px; width: auto; object-fit: contain; filter: grayscale(40%); transition: filter 0.25s; }
+    .ref-logo:hover img { filter: grayscale(0%); }
+    .ref-contacts { margin-top: 3rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
+    .ref-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.4rem 1.6rem; transition: border-color 0.25s; }
+    .ref-card:hover { border-color: var(--green); }
+    .ref-company { font-family: var(--disp); font-size: 1rem; font-weight: 700; text-transform: uppercase; color: var(--text); margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.5rem; }
+    .ref-company::before { content: ''; display: block; width: 4px; height: 16px; background: linear-gradient(to bottom, var(--green), var(--blue)); border-radius: 2px; flex-shrink: 0; }
+    .ref-contact { font-size: 0.83rem; color: var(--muted); margin-bottom: 0.25rem; }
+    .ref-contact a { color: var(--green); }
+    .ref-contact a:hover { color: var(--blue); }
+
+    /* ── CONTACT ── */
+    #contact { }
+    .contact-wrap { display: grid; grid-template-columns: 1fr 1.2fr; gap: 6rem; margin-top: 3.5rem; }
+    .contact-info { display: flex; flex-direction: column; gap: 2rem; }
+    .c-item { display: flex; gap: 1.1rem; align-items: flex-start; }
+    .c-icon { width: 42px; height: 42px; flex-shrink: 0; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; color: var(--green); }
+    .c-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.2rem; }
+    .c-val { font-size: 0.96rem; }
+    .c-val a:hover { color: var(--green); }
+    .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .f-field label { display: block; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.4rem; }
+    .f-field input, .f-field textarea { width: 100%; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.8rem 1rem; color: var(--text); font-family: var(--body); font-size: 0.9rem; outline: none; transition: border-color 0.2s; resize: vertical; }
+    .f-field input:focus, .f-field textarea:focus { border-color: var(--green); }
+    .f-field textarea { min-height: 120px; }
+    .f-submit { background: linear-gradient(135deg, var(--green), var(--blue)); color: #fff; border: none; padding: 0.9rem 2rem; border-radius: var(--radius); font-weight: 700; font-size: 0.9rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; width: 100%; transition: opacity 0.2s; }
+    .f-submit:hover { opacity: 0.85; }
+    .privacy-note { font-size: 0.74rem; color: var(--muted); }
+    .privacy-note a { color: var(--green); }
+
+    /* ── FOOTER ── */
+    footer { background: var(--bg); border-top: 1px solid var(--border); padding: 2.5rem 5%; }
+    .foot-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+    .foot-logo img { height: 56px; width: auto; }
+    .foot-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .foot-links a { font-size: 0.76rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; transition: color 0.2s; }
+    .foot-links a:hover { color: var(--green); }
+    .foot-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; padding-top: 1.5rem; }
+    .foot-copy { font-size: 0.76rem; color: var(--muted); }
+    .foot-credit { font-size: 0.76rem; color: var(--muted); }
+    .foot-credit a { color: var(--green); font-weight: 600; letter-spacing: 0.05em; }
+    .foot-credit a:hover { color: var(--blue); }
+
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.65s, transform 0.65s; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      #about { grid-template-columns: 1fr; gap: 3rem; padding-bottom: 60px; }
+      .about-img-wrap img { height: 300px; }
+      .about-badge { right: 0; bottom: -1rem; }
+      .team-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .contact-wrap { grid-template-columns: 1fr; gap: 3rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .foot-top { flex-direction: column; align-items: flex-start; }
+      .foot-bottom { flex-direction: column; text-align: center; }
+    }
+    @media (max-width: 768px) {
+      .hero-stats { gap: 2rem; }
+      .hero { padding-bottom: 70px; }
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes dash { from { stroke-dashoffset: 2000; } to { stroke-dashoffset: 0; } }
+    .c-path { stroke-dasharray: 2000; stroke-dashoffset: 2000; animation: dash 3s ease forwards 0.5s; }
+
+    /* WhatsApp floating button */
+    .whatsapp-float {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 300;
+      width: 58px; height: 58px; border-radius: 50%;
+      background: #25D366;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 28px rgba(37,211,102,0.6);
+    }
+    .whatsapp-float svg { width: 32px; height: 32px; }
+    .whatsapp-tooltip {
+      position: absolute; right: 68px; top: 50%;
+      transform: translateY(-50%);
+      background: #1a1a1a; color: #fff;
+      padding: 0.4rem 0.8rem; border-radius: 4px;
+      font-size: 0.78rem; font-weight: 600; white-space: nowrap;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.2s;
+    }
+    .whatsapp-float:hover .whatsapp-tooltip { opacity: 1; }
+
+    /* Legal / Privacy modals */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 500;
+      background: rgba(0,0,0,0.85); backdrop-filter: blur(6px);
+      align-items: center; justify-content: center; padding: 2rem;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal-box {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); max-width: 700px; width: 100%;
+      max-height: 80vh; overflow-y: auto; padding: 2.5rem;
+      position: relative;
+    }
+    .modal-close {
+      position: absolute; top: 1rem; right: 1rem;
+      background: none; border: none; color: var(--muted);
+      font-size: 1.4rem; cursor: pointer; line-height: 1;
+      transition: color 0.2s;
+    }
+    .modal-close:hover { color: var(--green); }
+    .modal-title {
+      font-family: var(--disp); font-size: 2rem; font-weight: 800;
+      text-transform: uppercase; margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, var(--green), var(--blue));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .modal-body h3 {
+      font-family: var(--disp); font-size: 1.1rem; font-weight: 700;
+      text-transform: uppercase; color: var(--green); margin: 1.5rem 0 0.5rem;
+    }
+    .modal-body p, .modal-body li {
+      font-size: 0.88rem; color: var(--muted); line-height: 1.7; margin-bottom: 0.5rem;
+    }
+    .modal-body ul { padding-left: 1.2rem; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#home" class="nav-logo"><img src="images/logo.png" alt="D&D Electrical — Tri-Zone Electrical, Harare Zimbabwe"/></a>
+</nav>
+
+<!-- Menu overlay -->
+<div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
+
+<!-- Floating menu button -->
+<button class="menu-btn" id="menuBtn" onclick="toggleMenu()" aria-label="Toggle navigation">
+  <svg class="icon-bars" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+    <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+  </svg>
+  <svg class="icon-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+  </svg>
+</button>
+
+<!-- Slide-out menu panel -->
+<div class="menu-panel" id="menuPanel">
+  <ul>
+    <li><a href="#home" onclick="closeMenu()">Home</a></li>
+    <li><a href="#services" onclick="closeMenu()">Services</a></li>
+    <li><a href="#about" onclick="closeMenu()">About</a></li>
+    <li><a href="#projects" onclick="closeMenu()">Showreel</a></li>
+    <li><a href="#team" onclick="closeMenu()">Team</a></li>
+    <li><a href="#references" onclick="closeMenu()">References</a></li>
+    <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+  </ul>
+  <div class="menu-panel-contact">
+    <a href="#contact" class="menu-cta" onclick="closeMenu()">Get In Touch</a>
+    <div class="menu-panel-phone"><a href="tel:+263774075279">+263 774 075 279</a></div>
+  </div>
+</div>
+
+<main>
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"><div class="hero-bg-slide slide-1"></div><div class="hero-bg-slide slide-2"></div></div>
+  <div class="hero-overlay"></div>
+  <svg style="position:absolute;inset:0;z-index:1;pointer-events:none;width:100%;height:100%" viewBox="0 0 1400 800" preserveAspectRatio="xMidYMid slice">
+    <path class="c-path" d="M0,400 L200,400 L260,280 L420,280 L480,160 L680,160 L740,340 L900,340 L960,120 L1160,120 L1220,400 L1400,400" fill="none" stroke="#4CAF50" stroke-width="1.5" opacity="0.12"/>
+    <path class="c-path" d="M0,600 L180,600 L240,500 L480,500 L540,660 L740,660 L800,560 L960,560 L1020,700 L1400,700" fill="none" stroke="#2196D9" stroke-width="1" opacity="0.08" style="animation-delay:1s"/>
+    <circle cx="260" cy="280" r="5" fill="#4CAF50" opacity="0.4"/>
+    <circle cx="480" cy="160" r="5" fill="#4CAF50" opacity="0.4"/>
+    <circle cx="960" cy="120" r="7" fill="#2196D9" opacity="0.5"/>
+    <circle cx="1220" cy="400" r="5" fill="#4CAF50" opacity="0.4"/>
+  </svg>
+  <div class="hero-content">
+    <div class="company-name-hero">David <span>&amp;</span> Donald<br>Electricals</div>
+    <div class="eyebrow">Harare, Zimbabwe — Tri-Zone Electrical</div>
+    <h1 class="hero-title">
+      Powering<br>
+      <span class="acc-g">Industry</span><br>
+      With <span class="acc-b">Excellence</span>
+    </h1>
+    <p class="hero-sub">David and Donald Electricals delivers reliable, safe, and efficient high-voltage and low-voltage electrical solutions across Zimbabwe's industrial, commercial, and utility sectors.</p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn btn-g">View Our Work</a>
+      <a href="#contact" class="btn btn-o">Get In Touch</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-n">11kV</div><div class="stat-l">High Voltage Systems</div></div>
+      <div><div class="stat-n">12+</div><div class="stat-l">Skilled Team Members</div></div>
+      <div><div class="stat-n">HRE &amp; BYO</div><div class="stat-l">Projects Across Zimbabwe</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="reveal">
+    <div class="sec-eyebrow">What We Do</div>
+    <h2 class="sec-title">Our Services</h2>
+    <p class="sec-sub">From high-voltage transmission infrastructure to precision low-voltage control systems — end-to-end electrical solutions for industrial and commercial clients.</p>
+  </div>
+  <div class="services-grid reveal">
+    <div class="svc">
+      <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      <div class="svc-title">High Voltage Solutions</div>
+      <p class="svc-text">Comprehensive high-voltage electrical services for industrial and utility applications — designed for maximum reliability, safety, and performance.</p>
+      <ul class="svc-list">
+        <li>Substation construction and maintenance</li>
+        <li>High-voltage equipment installation</li>
+        <li>Overhead transmission line construction</li>
+        <li>Electrical testing and commissioning</li>
+        <li>Preventive and corrective maintenance</li>
+        <li>Power system upgrades and refurbishments</li>
+      </ul>
+      <span class="svc-tag">&gt; 1,000V</span>
+    </div>
+    <div class="svc">
+      <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      <div class="svc-title">Low Voltage Solutions</div>
+      <p class="svc-text">Efficient and cost-effective low-voltage electrical services — every installation carried out in accordance with safety regulations and industry best practices.</p>
+      <ul class="svc-list">
+        <li>Electrical wiring and installations</li>
+        <li>Commercial and industrial lighting systems</li>
+        <li>Distribution boards and control panels</li>
+        <li>Power reticulation systems</li>
+        <li>Equipment connections and upgrades</li>
+        <li>Electrical fault finding and repairs</li>
+      </ul>
+      <span class="svc-tag">&lt; 1,000V</span>
+    </div>
+    <div class="svc">
+      <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
+      <div class="svc-title">Substation &amp; Plant Maintenance</div>
+      <p class="svc-text">Proactive maintenance that minimizes downtime, improves equipment reliability, extends asset lifespan, and reduces operational risks.</p>
+      <ul class="svc-list">
+        <li>Routine inspections and servicing</li>
+        <li>Transformer maintenance</li>
+        <li>Switchgear maintenance</li>
+        <li>Electrical fault diagnosis</li>
+        <li>Preventive maintenance programs</li>
+        <li>Emergency breakdown support</li>
+      </ul>
+      <span class="svc-tag">Maintenance</span>
+    </div>
+    <div class="svc">
+      <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <div class="svc-title">Ring Main Units</div>
+      <p class="svc-text">Specialist installation of Ring Main Units for electrical distribution networks — enhancing system reliability for urban and rural settings across Zimbabwe.</p>
+      <ul class="svc-list">
+        <li>RMU installation and commissioning</li>
+        <li>Distribution network integration</li>
+        <li>Safety protocol compliance</li>
+        <li>Performance optimization</li>
+      </ul>
+      <span class="svc-tag">Distribution</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="reveal">
+    <div class="about-img-wrap">
+      <img src="images/logo.png" alt="D&D Electrical technician working on Schneider Electric switchgear" loading="lazy"/>
+      <div class="about-badge">
+        <div class="big">D&amp;D</div>
+        <div class="small">Tri-Zone Electrical</div>
+      </div>
+    </div>
+  </div>
+  <div class="reveal">
+    <div class="sec-eyebrow">Who We Are</div>
+    <h2 class="sec-title">David &amp; Donald Electricals</h2>
+    <p class="sec-sub">Also trading as <strong style="color:var(--text)">Tri-Zone Electrical</strong> — a specialist electrical contracting company focused on high-quality construction, maintenance, and engineering solutions.</p>
+    <div class="about-list">
+      <div class="about-item">Extensive experience in installation, maintenance, and upgrading of electrical systems tailored to each client's requirements.</div>
+      <div class="about-item">Projects delivered on time, within budget, and in compliance with the highest industry standards.</div>
+      <div class="about-item">Successfully completed projects for Delta Coca-Cola and Delta National Breweries in Harare and Bulawayo.</div>
+      <div class="about-item">Serving industrial, commercial, and utility clients with a strong emphasis on safety, reliability, and operational efficiency.</div>
+      <div class="about-item">Committed to building lasting relationships based on trust, integrity, and exceptional service delivery.</div>
+    </div>
+    <div style="margin-top:2rem">
+      <a href="#contact" class="btn btn-g">Partner With Us</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- WHY CHOOSE US -->
+<section id="why">
+  <div class="reveal">
+    <div class="sec-eyebrow">Why Choose Us</div>
+    <h2 class="sec-title">Excellence You Can Trust</h2>
+    <p class="sec-sub">Five reasons why Zimbabwe's leading industrial clients choose D&amp;D Electrical for their critical infrastructure.</p>
+  </div>
+  <div class="why-grid reveal">
+    <div class="why-card">
+      <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+      <div class="why-title">Experienced Professionals</div>
+      <p class="why-text">Our team consists of skilled electrical and mechanical specialists dedicated to delivering quality workmanship on every project.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+      <div class="why-title">Proven Industry Experience</div>
+      <p class="why-text">Successfully executed projects for major industrial clients including Delta Coca-Cola and Delta National Breweries across Zimbabwe.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div class="why-title">Safety First</div>
+      <p class="why-text">Safety is at the core of everything we do. We strictly adhere to industry regulations, safety standards, and best practices on every project.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+      <div class="why-title">Reliable Solutions</div>
+      <p class="why-text">We provide dependable electrical services designed to maximize performance, efficiency, and operational continuity for our clients.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
+      <div class="why-title">Customer-Focused</div>
+      <p class="why-text">We work closely with our clients to understand their needs and deliver tailored solutions that consistently exceed expectations.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS / SHOWREEL -->
+<section id="projects">
+  <div class="reveal">
+    <div class="sec-eyebrow">Showreel</div>
+    <h2 class="sec-title">Featured Projects</h2>
+    <p class="sec-sub">A selection of high-impact electrical infrastructure projects delivered across Zimbabwe.</p>
+  </div>
+  <div class="proj-grid reveal">
+    <div class="proj-card">
+      <div class="proj-thumb">
+        <img src="images/donald.png" alt="Team working on 11kV substation transformer" loading="lazy"/>
+      </div>
+      <div class="proj-body">
+        <div class="proj-label">High Voltage — Substation</div>
+        <div class="proj-title">Construction of 11kV Substation</div>
+        <p class="proj-text">Completed 11kV substation construction for Delta Coca-Cola and Delta National Breweries in Harare and Bulawayo. Implemented robust electrical infrastructure ensuring seamless voltage transformation and distribution to stringent safety standards. <em style="font-size:0.78rem;color:var(--muted)">Ref: Noel Zidya</em></p>
+        <a href="tel:+263774075279" class="proj-link">Enquire ›</a>
+      </div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-thumb">
+        <img src="images/super_team.png" alt="Switchgear and control panel installation" loading="lazy"/>
+      </div>
+      <div class="proj-body">
+        <div class="proj-label">Low Voltage — Control Panels</div>
+        <div class="proj-title">Switchgear &amp; Control Panel Installation</div>
+        <p class="proj-text">Installation and commissioning of industrial switchgear and MV/LV control panels. Our team ensures precise configuration, cable termination, and full compliance with electrical safety regulations for reliable, long-term operation.</p>
+        <a href="#contact" class="proj-link">Enquire ›</a>
+      </div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-thumb">
+        <img src="images/david.png" alt="Cable trunking and conduit installation work" loading="lazy"/>
+      </div>
+      <div class="proj-body">
+        <div class="proj-label">Conduit — Termination</div>
+        <div class="proj-title">Uro Mold &amp; Cable Installation</div>
+        <p class="proj-text">Site assessments, comprehensive termination planning, and safe execution of cable trunking, conduit laying, and electrical system connections. Follow-up inspections coordinated to ensure all safety standards were fully met.</p>
+        <a href="#contact" class="proj-link">Enquire ›</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="reveal">
+    <div class="sec-eyebrow">Our People</div>
+    <h2 class="sec-title">The Super Team</h2>
+    <p class="sec-sub">Skilled, dedicated, and professional — our team is structured for efficient project delivery and exceptional service across every engagement.</p>
+  </div>
+  <div class="team-layout reveal">
+    <div class="team-photo-grid">
+      <div class="team-photo full">
+        <img src="images/transformer_team.png" alt="D&D Electrical super team on site" loading="lazy"/>
+      </div>
+      <div class="team-photo">
+        <img src="images/switchgear.png" alt="D&D Electrical team working on high voltage transformer" loading="lazy"/>
+      </div>
+      <div class="team-photo">
+        <img src="images/installation_work.png" alt="D&D Electrical technician working on Schneider switchgear" loading="lazy"/>
+      </div>
+    </div>
+    <div>
+      <p style="color:var(--muted);font-size:0.9rem;line-height:1.7;margin-bottom:2rem;">Our organisational structure is strategically designed to facilitate efficient project execution and uphold operational excellence. Together, our team brings technical expertise, practical experience, and a commitment to safety and quality across every project.</p>
+      <div class="team-roles">
+        <div class="team-role-item"><div class="role-dot"></div><div class="role-name">Projects Manager</div></div>
+        <div class="team-role-item"><div class="role-dot"></div><div class="role-name">Services Manager</div></div>
+        <div class="team-role-item"><div class="role-dot"></div><div class="role-name">Electrical Artisans</div></div>
+        <div class="team-role-item"><div class="role-dot"></div><div class="role-name">Mechanical Artisan</div></div>
+        <div class="team-role-item"><div class="role-dot"></div><div class="role-name">Assistant Artisans</div></div>
+        <div class="team-role-item"><div class="role-dot"></div><div class="role-name">Administrative Support</div></div>
+        <div class="team-role-item"><div class="role-dot"></div><div class="role-name">Logistics &amp; Transport</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISION -->
+<section id="vision">
+  <div class="inner reveal">
+    <div class="sec-eyebrow">Our Vision</div>
+    <h2 class="sec-title">Leading Through <span class="vision-highlight">Excellence</span></h2>
+    <p class="sec-sub">To be the preferred provider of electrical construction, maintenance, and engineering solutions by consistently delivering safe, innovative, and high-quality services that exceed customer expectations. We strive to build lasting relationships based on trust, integrity, reliability, and exceptional service while contributing to the growth and sustainability of the industries we serve.</p>
+    <div style="margin-top:2.5rem">
+      <a href="#contact" class="btn btn-g">Let's Power Your Next Project</a>
+    </div>
+  </div>
+</section>
+
+<!-- REFERENCES -->
+<section id="references">
+  <div class="reveal">
+    <div class="sec-eyebrow">Our Clients</div>
+    <h2 class="sec-title">Trusted By Industry Leaders</h2>
+    <p class="sec-sub">We have successfully delivered projects for leading organisations across Zimbabwe's industrial and utility sectors.</p>
+  </div>
+  <div class="ref-logos reveal">
+    <div class="ref-logo"><img src="images/ref_surrey.png" alt="Surrey Group" loading="lazy"/></div>
+    <div class="ref-logo"><img src="images/ref_cutrag.png" alt="Home of Cut Rag — Premium Tobacco Manufacturers" loading="lazy"/></div>
+    <div class="ref-logo"><img src="images/ref_hvc.png" alt="HVC — High Voltage Construction" loading="lazy"/></div>
+    <div class="ref-logo"><img src="images/ref_zetdc.png" alt="ZETDC — Zimbabwe Electricity Transmission and Distribution Company" loading="lazy"/></div>
+    <div class="ref-logo"><img src="images/ref_probottlers.png" alt="PRObottlers" loading="lazy"/></div>
+    <div class="ref-logo"><img src="images/ref_buffalo.png" alt="Client reference" loading="lazy"/></div>
+    <div class="ref-logo"><img src="images/ref_mashonaland.png" alt="Mashonaland Tobacco Company" loading="lazy"/></div>
+  </div>
+  <div class="ref-contacts reveal">
+    <div class="ref-card">
+      <div class="ref-company">Zimbabwe Leaf Tobacco</div>
+      <div class="ref-contact">Mr Stewart Shammer</div>
+      <div class="ref-contact"><a href="tel:+263772233945">+263 772 233 945</a></div>
+    </div>
+    <div class="ref-card">
+      <div class="ref-company">High Voltage Construction</div>
+      <div class="ref-contact">Mr Derreck Lane</div>
+      <div class="ref-contact"><a href="tel:+263772240969">+263 772 240 969</a></div>
+    </div>
+    <div class="ref-card">
+      <div class="ref-company">Mashonaland Tobacco Company</div>
+      <div class="ref-contact">Mr Steve Shurt: <a href="tel:+263772264859">+263 772 264 859</a></div>
+      <div class="ref-contact">Eng Wilson Nasho: <a href="tel:+263772501226">+263 772 501 226</a></div>
+    </div>
+    <div class="ref-card">
+      <div class="ref-company">Cutrag Premium Tobacco</div>
+      <div class="ref-contact">Mr Batsirai</div>
+      <div class="ref-contact"><a href="tel:+263773755677">+263 773 755 677</a></div>
+    </div>
+    <div class="ref-card">
+      <div class="ref-company">ZETDC — Warren Depot</div>
+      <div class="ref-contact">Mr Bhonzo: <a href="tel:+263772804112">+263 772 804 112</a></div>
+      <div class="ref-contact">Mr J Singende: <a href="tel:+263772910951">+263 772 910 951</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="reveal">
+    <div class="sec-eyebrow">Get In Touch</div>
+    <h2 class="sec-title">Contact Us</h2>
+    <p class="sec-sub">Ready to discuss your next electrical project? Reach out and our team will respond promptly.</p>
+  </div>
+  <div class="contact-wrap reveal">
+    <div class="contact-info">
+      <div class="c-item">
+        <div class="c-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div>
+          <div class="c-label">Address</div>
+          <div class="c-val">1 Cyprus Court Arcadia<br>Harare, Zimbabwe</div>
+        </div>
+      </div>
+      <div class="c-item">
+        <div class="c-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.29 6.29l1.27-.53a2 2 0 012.11.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+        <div>
+          <div class="c-label">Phone</div>
+          <div class="c-val"><a href="tel:+263774075279">+263 774 075 279</a></div>
+        </div>
+      </div>
+      <div class="c-item">
+        <div class="c-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+        <div>
+          <div class="c-label">Email</div>
+          <div class="c-val"><a href="mailto:info@dndelectrical.co.zw">info@dndelectrical.co.zw</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <div class="form-row">
+        <div class="f-field"><label>Name</label><input type="text" name="name" placeholder="Your name" required/></div>
+        <div class="f-field"><label>Email</label><input type="email" name="email" placeholder="your@email.com" required/></div>
+      </div>
+      <div class="f-field"><label>Subject</label><input type="text" name="subject" placeholder="Project enquiry"/></div>
+      <div class="f-field"><label>Message</label><textarea name="message" placeholder="Tell us about your project…" required></textarea></div>
+      <p class="privacy-note">By submitting you confirm you have read our <a href="#" onclick="openModal('privacyModal');return false;">Privacy Policy</a>.</p>
+      <button class="f-submit btn" type="button" onclick="handleSubmit(this)">Send Message</button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-top">
+    <a href="#home" class="foot-logo"><img src="images/logo.png" alt="D&D Electrical — Tri-Zone Electrical, Harare Zimbabwe"/></a>
+    <div class="foot-links">
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#projects">Showreel</a>
+      <a href="#team">Team</a>
+      <a href="#references">References</a>
+      <a href="#contact">Contact</a>
+      <a href="#" onclick="openModal('legalModal');return false;">Legal Notice</a>
+      <a href="#" onclick="openModal('privacyModal');return false;">Privacy</a>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <div class="foot-copy">© 2026 David &amp; Donald Electricals (Tri-Zone Electrical) — Harare, Zimbabwe. All rights reserved.</div>
+    <div class="foot-credit">© <a href="https://chizmansolutionsinc.com" target="_blank" rel="noopener">Chizman Solutions Inc.</a></div>
+  </div>
+</footer>
+
+<script>
+  function toggleMenu() {
+    const btn = document.getElementById('menuBtn');
+    const panel = document.getElementById('menuPanel');
+    const overlay = document.getElementById('menuOverlay');
+    btn.classList.toggle('open');
+    panel.classList.toggle('open');
+    overlay.classList.toggle('open');
+    document.body.style.overflow = panel.classList.contains('open') ? 'hidden' : '';
+  }
+  function closeMenu() {
+    document.getElementById('menuBtn').classList.remove('open');
+    document.getElementById('menuPanel').classList.remove('open');
+    document.getElementById('menuOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  // Scroll reveal
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(r => obs.observe(r));
+
+  // Nav: background when scrolled, hide on scroll down, show on scroll up
+  let lastScroll = 0;
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    const current = window.scrollY;
+    nav.classList.toggle('nav-scrolled', current > 80);
+    if (current > lastScroll && current > 200) {
+      nav.classList.add('nav-hidden');
+    } else {
+      nav.classList.remove('nav-hidden');
+    }
+    lastScroll = current <= 0 ? 0 : current;
+  }, { passive: true });
+
+  // Hero background slideshow — swap every 60 seconds
+  const slide1 = document.querySelector('.slide-1');
+  const slide2 = document.querySelector('.slide-2');
+  let currentSlide = 1;
+  setInterval(() => {
+    if (currentSlide === 1) {
+      slide1.style.opacity = '0';
+      slide2.style.opacity = '1';
+      currentSlide = 2;
+    } else {
+      slide1.style.opacity = '1';
+      slide2.style.opacity = '0';
+      currentSlide = 1;
+    }
+  }, 60000);
+
+  // Modal functions
+  function openModal(id) {
+    document.getElementById(id).classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(id) {
+    document.getElementById(id).classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  // Close modal on overlay click
+  document.querySelectorAll('.modal-overlay').forEach(m => {
+    m.addEventListener('click', e => { if (e.target === m) closeModal(m.id); });
+  });
+  // Close modal on Escape key
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') document.querySelectorAll('.modal-overlay.active').forEach(m => closeModal(m.id));
+  });
+
+  // Contact form
+  function handleSubmit(btn) {
+    const form = btn.closest('.contact-form');
+    const name = form.querySelector('[name=name]').value.trim();
+    const email = form.querySelector('[name=email]').value.trim();
+    const message = form.querySelector('[name=message]').value.trim();
+    if (!name || !email || !message) { alert('Please fill in your name, email, and message.'); return; }
+    btn.textContent = 'Message Sent ✓';
+    btn.style.background = 'linear-gradient(135deg,#4CAF50,#2196D9)';
+    btn.disabled = true;
+  }
+</script>
+
+<!-- WhatsApp Float Button -->
+<a class="whatsapp-float" href="https://wa.me/263774075279" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+  </svg>
+  <span class="whatsapp-tooltip">Chat on WhatsApp</span>
+</a>
+
+<!-- Legal Notice Modal -->
+<div class="modal-overlay" id="legalModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('legalModal')">✕</button>
+    <div class="modal-title">Legal Notice</div>
+    <div class="modal-body">
+      <h3>Company Information</h3>
+      <p><strong style="color:var(--text)">David and Donald Electricals (Tri-Zone Electrical)</strong><br>
+      1 Cyprus Court Arcadia, Harare, Zimbabwe<br>
+      Phone: <a href="tel:+263774075279" style="color:var(--green)">+263 774 075 279</a><br>
+      Email: <a href="mailto:info@dndelectrical.co.zw" style="color:var(--green)">info@dndelectrical.co.zw</a></p>
+      <h3>Disclaimer</h3>
+      <p>The information provided on this website is for general informational purposes only. David and Donald Electricals makes no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, or suitability of the information, products, services, or related graphics contained on this website.</p>
+      <h3>Intellectual Property</h3>
+      <p>All content on this website — including text, graphics, logos, images, and software — is the property of David and Donald Electricals and is protected by applicable intellectual property laws. Unauthorised use or reproduction is strictly prohibited.</p>
+      <h3>Limitation of Liability</h3>
+      <p>In no event shall David and Donald Electricals be liable for any loss or damage arising out of or in connection with the use of this website or its content.</p>
+      <h3>Governing Law</h3>
+      <p>This website and its content are governed by the laws of the Republic of Zimbabwe. Any disputes arising from the use of this website shall be subject to the exclusive jurisdiction of the courts of Zimbabwe.</p>
+      <h3>Contact</h3>
+      <p>For any legal enquiries, please contact us at <a href="mailto:info@dndelectrical.co.zw" style="color:var(--green)">info@dndelectrical.co.zw</a>.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Privacy Policy Modal -->
+<div class="modal-overlay" id="privacyModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('privacyModal')">✕</button>
+    <div class="modal-title">Privacy Policy</div>
+    <div class="modal-body">
+      <p>Last updated: January 2026</p>
+      <h3>Information We Collect</h3>
+      <p>When you use the contact form on this website, we collect the following personal information you voluntarily provide:</p>
+      <ul>
+        <li>Your name</li>
+        <li>Your email address</li>
+        <li>Your message or project enquiry</li>
+      </ul>
+      <h3>How We Use Your Information</h3>
+      <p>Information submitted through our contact form is used solely to respond to your enquiry or project request. We do not use your information for marketing purposes without your explicit consent.</p>
+      <h3>Data Storage &amp; Security</h3>
+      <p>We take reasonable precautions to protect your personal information. Your data is not sold, traded, or transferred to third parties. It is retained only for as long as necessary to fulfil the purpose for which it was collected.</p>
+      <h3>Cookies</h3>
+      <p>This website does not use tracking cookies or third-party analytics tools. No personal browsing data is collected during your visit.</p>
+      <h3>Third-Party Links</h3>
+      <p>This website may contain links to external websites. We are not responsible for the privacy practices or content of those sites and encourage you to review their privacy policies.</p>
+      <h3>Your Rights</h3>
+      <p>You have the right to request access to, correction of, or deletion of any personal information we hold about you. To exercise these rights, contact us at <a href="mailto:info@dndelectrical.co.zw" style="color:var(--green)">info@dndelectrical.co.zw</a>.</p>
+      <h3>Contact</h3>
+      <p>For any privacy-related concerns, please contact:<br>
+      David and Donald Electricals<br>
+      1 Cyprus Court Arcadia, Harare, Zimbabwe<br>
+      <a href="mailto:info@dndelectrical.co.zw" style="color:var(--green)">info@dndelectrical.co.zw</a></p>
+    </div>
+  </div>
+</div>
+</body>
+</html>
